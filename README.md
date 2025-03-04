@@ -5,4 +5,6 @@ I am doing all of this using a gaming pc  with a 3060ti
 
 Open windows powershell and type 
 
-```wsl --install -d Ubuntu-22.04```
+```
+wsl --install -d Ubuntu-22.04
+```
