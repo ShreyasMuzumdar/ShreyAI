@@ -29,4 +29,59 @@ source .venv/bin/activate
 python3 -m pip install --upgrade pip
  python3 -m pip install -r requirements.txt
 python3 -m piper_recording_studio
+
+
+
+cd /output/en-US/
+cd .chat
+
+sudo apt install ffmpeg
+
+cd ../../../
+
+pip install numpy
+pip install onnxruntime
+ python3 -m export_dataset ~/piper-recording-studio/output/en-US/ ~/my-voice-dataset
+deactivate
+
+exit the tab and reenter
+
+## Make a new directory for training
+
+mkdir training
+cd training
+
+## Clone the Piper Repo
+
+git clone https://github.com/rhasspy/piper.git
+
+## Create another python virtual environment and activate it
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+python3 -m pip install pip==23.3.1
+
+pip install numpy==1.24.4
+
+pip install torchmetrics==0.11.4
+
+cd piper/src/python
+python3 -m pip install --upgrade wheel setuptools
+pip3 install -e .
+
+pip install pytorch-lightning==1.7.0 torch==1.11.0
+
+sudo apt-get update
+ sudo apt-get install build-essential
+sudo apt-get install python3-dev
+
+python3 -m piper_train.preprocess \
+  --language en \
+  --input-dir ~/my-voice-dataset/ \
+  --output-dir ~/training/train-me \
+  --dataset-format ljspeech \
+  --single-speaker \
+  --sample-rate 22050
+
 ```
