@@ -84,4 +84,25 @@ python3 -m piper_train.preprocess \
   --single-speaker \
   --sample-rate 22050
 
+
+wget https://huggingface.co/datasets/rhasspy/piper-checkpoints/resolve/main/en/en_US/lessac/medium/epoch%3D2164-step%3D1355540.ckpt
+
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+sudo apt install nvidia-cuda-toolkit
+python3 -m piper_train \
+    --dataset-dir ~/training/train-me \
+    --accelerator 'gpu' \
+    --devices 1 \
+    --batch-size 16 \
+    --validation-split 0.0 \
+    --num-test-examples 0 \
+    --max_epochs 6000 \
+    --resume_from_checkpoint "~/training/piper/src/python/epoch=2164-step=1355540.ckpt" \
+    --checkpoint-epochs 1 \
+    --precision 16 \
+    --max-phoneme-ids 400 \
+    --quality medium \
+    --log_every_n_steps 1
+
+
 ```
