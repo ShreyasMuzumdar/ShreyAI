@@ -76,6 +76,8 @@ sudo apt-get update
  sudo apt-get install build-essential
 sudo apt-get install python3-dev
 
+./build_monotonic_align.sh
+
 python3 -m piper_train.preprocess \
   --language en \
   --input-dir ~/my-voice-dataset/ \
@@ -104,5 +106,7 @@ python3 -m piper_train \
     --quality medium \
     --log_every_n_steps 1
 
-
+python3 -m piper_train.export_onnx \
+    "/home/shreyas/training/train-me/lightning_logs/version_7/checkpoints/epoch=11999-step=1670260.ckpt" \
+    ~/training/model.onnx
 ```
