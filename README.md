@@ -10,11 +10,11 @@ wsl --install -d Ubuntu-22.04
 
 mkdir whisperdata
 
- docker run -itd -p 10300:10300 -v ~/whisperdata/:/data rhasspy/wyoming-whisper \          --model tiny-int8 --language en
-
+ sudo  docker run -it -p 10300:10300 -v ~/whisperdata/:/data rhasspy/wyoming-whisper \
+     --model tiny-int8 --language en
 mkdir piperdata
 
-shreyas@DESKTOP-UAJDFOE:~$ docker run -itd -p 10200:10200 -v ~/piperdata/:/data rhasspy/wyoming-piper \
+sudo docker run -itd -p 10200:10200 -v ~/piperdata/:/data rhasspy/wyoming-piper \
     --voice en_US-lessac-medium
 
 
